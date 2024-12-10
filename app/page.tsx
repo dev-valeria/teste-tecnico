@@ -72,7 +72,7 @@ export default function Home() {
           onClick={toggleTheme}
           className="px-4 py-2 rounded-lg text-white bg-blue-500 dark:bg-yellow-500 dark:text-black transition"
         >
-          {theme === "light" ? " Dark Mode" : " Light Mode"}
+          {theme === "light" ? "Light Mode" : "Dark Mode"}
         </button>
         <button
           onClick={toggleView}
