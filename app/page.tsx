@@ -43,12 +43,10 @@ export default function Home() {
 
  const handleSave = (item: Item) => {
   if (item.id) {
-    // Atualizar
     setData((prev) =>
       prev.map((d) => (d.id === item.id ? { ...d, ...item } : d))
     );
   } else {
-    // Criar
     setData((prev) => [...prev, item]);
   }
   setModalOpen(false);
@@ -128,38 +126,96 @@ export default function Home() {
           container.appendChild(actionContainer);
         },
       },
-    ]}
-  />
-        ) : (
-            <TreeList
-            dataSource={data}
-            keyExpr="id"
-            parentIdExpr="parentId"
-            showBorders
-            className="modern-table"
-            aria-label="Custom TreeList" 
+]}
+ onInitialized={(e) => {
+  const gridElement = e.element; 
+  if (gridElement) {
+    const a11yStatusContainerSelector = ".dx-gridbase-a11y-status-container";
 
-            columns={[
-              { dataField: "id", caption: "ID", width: 80, alignment: "center" },
-              { dataField: "name", caption: "NAME", alignment: "center" },
-              { dataField: "value", caption: "VALUE", width: 120, alignment: "center" },
-              {
-                caption: "ACTIONS",
-                cellTemplate: (container, options) => {
-                  const rowData = options.data;
-                  if (!rowData) return;
-                  container.innerHTML = `
-                    <div class="flex justify-center gap-2">
-                      <button class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Edit</button>
-                      <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Delete</button>
-                    </div>
-                  `;
-                  container.querySelector("button:nth-child(1)")?.addEventListener("click", () => handleEdit(rowData));
-                  container.querySelector("button:nth-child(2)")?.addEventListener("click", () => handleDelete(rowData.id));
-                },
-              },
-            ]}
-          />
+    const observer = new MutationObserver(() => {
+      const a11yStatusContainer = gridElement.querySelector(
+        a11yStatusContainerSelector
+      );
+
+      if (a11yStatusContainer) {
+        a11yStatusContainer.textContent = ""; 
+        a11yStatusContainer.setAttribute("aria-hidden", "true"); 
+      }
+    });
+
+    observer.observe(gridElement, {
+      childList: true, 
+      subtree: true,
+    });
+
+    const initialStatusContainer = gridElement.querySelector(
+      a11yStatusContainerSelector
+    );
+    if (initialStatusContainer) {
+      initialStatusContainer.textContent = ""; 
+      initialStatusContainer.setAttribute("aria-hidden", "true"); 
+    }
+  }
+}}
+/>
+        ) : (
+          <TreeList
+  dataSource={data}
+  keyExpr="id"
+  parentIdExpr="parentId"
+  showBorders
+  className="modern-table"
+  aria-label="Custom TreeList"
+  onInitialized={(e) => {
+    const treeListElement = e.element; 
+    if (treeListElement) {
+      const a11yStatusContainerSelector = ".dx-gridbase-a11y-status-container";
+
+      const observer = new MutationObserver(() => {
+        const a11yStatusContainer = treeListElement.querySelector(
+          a11yStatusContainerSelector
+        );
+        if (a11yStatusContainer) {
+          a11yStatusContainer.textContent = ""; 
+          a11yStatusContainer.setAttribute("aria-hidden", "true"); 
+        }
+      });
+
+      observer.observe(treeListElement, {
+        childList: true,
+        subtree: true, 
+      });
+
+      const initialStatusContainer = treeListElement.querySelector(
+        a11yStatusContainerSelector
+      );
+      if (initialStatusContainer) {
+        initialStatusContainer.textContent = ""; 
+        initialStatusContainer.setAttribute("aria-hidden", "true"); 
+      }
+    }
+  }}
+  columns={[
+    { dataField: "id", caption: "ID", width: 80, alignment: "center" },
+    { dataField: "name", caption: "NAME", alignment: "center" },
+    { dataField: "value", caption: "VALUE", width: 120, alignment: "center" },
+    {
+      caption: "ACTIONS",
+      cellTemplate: (container, options) => {
+        const rowData = options.data;
+        if (!rowData) return;
+        container.innerHTML = `
+          <div class="flex justify-center gap-2">
+            <button class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Edit</button>
+            <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Delete</button>
+          </div>
+        `;
+        container.querySelector("button:nth-child(1)")?.addEventListener("click", () => handleEdit(rowData));
+        container.querySelector("button:nth-child(2)")?.addEventListener("click", () => handleDelete(rowData.id));
+      },
+    },
+  ]}
+/>
         )}
       </div>
 
