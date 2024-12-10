@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Configuração de fontes e cores */
 :root {
   --font-primary: 'Inter', sans-serif;
   --color-text-light: #333333;
@@ -15,7 +14,7 @@
 
 /* Estilo global */
 body {
-  font-family: var(--font-primary);
+  font-family: 'Inter',sans-serif;
   background-color: var(--color-background-light);
   color: var(--color-text-light);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -75,6 +74,7 @@ button:hover {
 
 .dark .modal-content {
   background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
 }
 
 .modal-header {
@@ -99,13 +99,11 @@ button:hover {
 /* Estilo da tabela */
 .modern-table {
   table-layout: fixed;
-  /* Garante consistência na largura */
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
   text-align: center;
-    /* Centraliza texto no geral */
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .modern-table .dx-datagrid-rowsview,
@@ -203,4 +201,31 @@ button:hover {
 
 .modern-table .dx-command-cell .delete-button:hover {
   background-color: #b91c1c;
+}
+
+/* Estilos padrão para o input */
+input {
+  background-color: var(--color-background-light);
+  color: var(--color-text-light);
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark input {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+  border-color: #4b5563;
+}
+
+input::placeholder {
+  color: #9ca3af;
+  opacity: 0.7;
+}
+
+.dark input::placeholder {
+  color: #6b7280;
 }

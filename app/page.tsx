@@ -95,11 +95,11 @@ export default function Home() {
       <div>
         {view === "DataGrid" ? (
           <DataGrid
+          aria-label="Custom DataGrid"
           className="modern-table"
             dataSource={data}
             keyExpr="id"
             showBorders
-            aria-description="Custom Data Grid Description"
             columns={[
               { dataField: "id", caption: "ID", width: 100, alignment: "center" },
               { dataField: "name", caption: "NAME", alignment: "center" },
@@ -135,9 +135,8 @@ export default function Home() {
             dataSource={data}
             keyExpr="id"
             parentIdExpr="parentId"
-              showBorders
-              className="modern-table"
-               aria-label="Custom TreeList Description"
+            showBorders
+            className="modern-table"
 
             columns={[
               { dataField: "id", caption: "ID", width: 80, alignment: "center" },
