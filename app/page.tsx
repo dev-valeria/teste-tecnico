@@ -78,7 +78,7 @@ export default function Home() {
           onClick={toggleView}
           className="px-4 py-2 rounded-lg text-white bg-green-500 dark:bg-purple-500 transition"
         >
-          {view === "DataGrid" ? " Switch to Tree List" : " Switch to Data Grid"}
+          {view === "DataGrid" ? "Switch to Data Grid" : "Switch to Tree List"}
         </button>
         <button
           onClick={() => setModalOpen(true)}
@@ -137,6 +137,7 @@ export default function Home() {
             parentIdExpr="parentId"
             showBorders
             className="modern-table"
+            aria-label="Custom TreeList" 
 
             columns={[
               { dataField: "id", caption: "ID", width: 80, alignment: "center" },
