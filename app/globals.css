@@ -2,20 +2,205 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Configuração de fontes e cores */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-primary: 'Inter', sans-serif;
+  --color-text-light: #333333;
+  --color-background-light: #f9f9f9;
+  --color-header-light: #334155;
+  --color-text-dark: #f9f9f9;
+  --color-background-dark: #1e293b;
+  --color-header-dark: #1e293b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Estilo global */
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-background-light);
+  color: var(--color-text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+/* Links */
+a {
+  color: var(--color-text-light);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botões */
+button {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--color-background-light);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dark .modal-content {
+  background-color: var(--color-background-dark);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Estilo da tabela */
+.modern-table {
+  table-layout: fixed;
+  /* Garante consistência na largura */
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+    /* Centraliza texto no geral */
+    margin: 0 auto;
+}
+
+.modern-table .dx-datagrid-rowsview,
+.modern-table .dx-treelist-rowsview {
+  background-color: var(--color-background-light);
+  color: var(--color-text-light);
+  border: 1px solid #d1d5db;
+}
+
+.dark .modern-table .dx-datagrid-rowsview,
+.dark .modern-table .dx-treelist-rowsview {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+/* Cabeçalho */
+.modern-table .dx-header-row {
+  background-color: var(--color-header-light);
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+}
+
+.dark .modern-table .dx-header-row {
+  background-color: var(--color-header-dark);
+}
+
+/* Células */
+.modern-table .dx-cell,
+.modern-table .dx-header-row .dx-cell {
+  padding: 12px;
+  text-align: center;
+  border-right: 1px solid #d1d5db;
+}
+
+.modern-table .dx-cell:last-child,
+.modern-table .dx-header-row .dx-cell:last-child {
+  border-right: none;
+}
+
+/* Linhas */
+.modern-table .dx-row {
+  background-color: var(--color-background-light);
+  color: var(--color-text-light);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.modern-table .dx-row:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+.modern-table .dx-row:hover {
+  background-color: #e5e7eb;
+}
+
+.dark .modern-table .dx-row {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+.dark .modern-table .dx-row:hover {
+  background-color: #3b4b5c;
+}
+
+/* Célula de ações */
+.modern-table .dx-command-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.modern-table .dx-command-cell button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.modern-table .dx-command-cell .edit-button {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.modern-table .dx-command-cell .edit-button:hover {
+  background-color: #2563eb;
+}
+
+.modern-table .dx-command-cell .delete-button {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.modern-table .dx-command-cell .delete-button:hover {
+  background-color: #b91c1c;
 }
