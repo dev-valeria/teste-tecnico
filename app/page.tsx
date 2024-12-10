@@ -72,13 +72,13 @@ export default function Home() {
           onClick={toggleTheme}
           className="px-4 py-2 rounded-lg text-white bg-blue-500 dark:bg-yellow-500 dark:text-black transition"
         >
-          {theme === "light" ? "🌙 Dark Mode" : "🌞 Light Mode"}
+          {theme === "light" ? " Dark Mode" : " Light Mode"}
         </button>
         <button
           onClick={toggleView}
           className="px-4 py-2 rounded-lg text-white bg-green-500 dark:bg-purple-500 transition"
         >
-          {view === "DataGrid" ? "🌲 Switch to Tree List" : "📊 Switch to Data Grid"}
+          {view === "DataGrid" ? " Switch to Tree List" : " Switch to Data Grid"}
         </button>
         <button
           onClick={() => setModalOpen(true)}
@@ -89,7 +89,7 @@ export default function Home() {
       </div>
 
       <h1 className="text-3xl font-bold mb-6">
-        {view === "DataGrid" ? "📊 Data Grid" : "🌲 Tree List"}
+        {view === "DataGrid" ? " Data Grid" : " Tree List"}
       </h1>
 
       <div>
