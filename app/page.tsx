@@ -89,7 +89,7 @@ export default function Home() {
       </div>
 
       <h1 className="text-3xl font-bold mb-6">
-        {view === "DataGrid" ? " Data Grid" : " Tree List"}
+        {view === "DataGrid" ? " DATA GRID" : "TREE LIST"}
       </h1>
 
       <div>
